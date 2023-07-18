@@ -44,8 +44,10 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--directory', default=None)
+    parser.add_argument('--prompt', default=None)
     args = parser.parse_args()
     dir = args.directory
+    query = args.prompt
 
     # define our own LLM
     llm = OurLLM()
@@ -60,5 +62,5 @@ if __name__ == '__main__':
 
     # Query and print response
     query_engine = index.as_query_engine()
-    response = query_engine.query("Why did the author's advisor say nothing about the strange class?")
+    response = query_engine.query(query)
     print(response)
