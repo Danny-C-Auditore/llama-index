@@ -17,9 +17,11 @@ If a question does not make any sense, or is not factually coherent, explain why
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir', default='.\\data')
 parser.add_argument('--Q',default=None)
+parser.add_argument('--model', default="csitfun/llama-7b-logicot")
 args = parser.parse_args()
 dir = args.dir
 Q = args.Q
+model = args.model
 
 #load documents
 documents = SimpleDirectoryReader(dir).load_data()
@@ -33,8 +35,8 @@ llm = HuggingFaceLLM(
     generate_kwargs={"temperature": 0.7, "do_sample": False},
     system_prompt=system_prompt,
     query_wrapper_prompt=query_wrapper_prompt,
-    tokenizer_name="openlm-research/open_llama_13b",
-    model_name="openlm-research/open_llama_13b",
+    tokenizer_name=model,
+    model_name=model,
     device_map="auto",
     #stopping_ids=[50278, 50279, 50277, 1, 0],
     tokenizer_kwargs={"max_length": 2048},
