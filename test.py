@@ -48,7 +48,7 @@ service_context = ServiceContext.from_defaults(
 )
 
 # Load the data
-doucuments = SimpleDirectoryReader("test.json").load_data()
+doucuments = SimpleDirectoryReader("data_valid.json").load_data()
 index = ListIndex.from_documents(doucuments, service_context=service_context)
 
 # Query and print response
