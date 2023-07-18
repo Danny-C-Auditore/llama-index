@@ -16,7 +16,7 @@ If a question does not make any sense, or is not factually coherent, explain why
 # set paramenters
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir', default='.\\data')
-parser.add_argument('--Q',default=None)
+parser.add_argument('--Q',default="What did the author do growing up?")
 parser.add_argument('--model', default="csitfun/llama-7b-logicot")
 parser.add_argument('--max', default=2048)
 args = parser.parse_args()
@@ -50,6 +50,6 @@ service_context = ServiceContext.from_defaults(chunk_size=1024, llm=llm)
 index = ListIndex.from_documents(documents, service_context=service_context)
 
 # set Logging to debug for more detailed outputs
-query_engie = index.as_query_engine()
-response = query_engie.query(Q)
+query_engine = index.as_query_engine()
+response = query_engine.query(Q)
 print(response)
