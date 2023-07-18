@@ -44,7 +44,7 @@ if __name__ == '__main__':
     # set number of output tokens
     num_output = 256
 
-    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:16"
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--directory', default=None)
