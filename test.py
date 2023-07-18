@@ -58,8 +58,8 @@ if __name__ == '__main__':
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
     model_name = args.model
-    pipeline = pipeline("text-generation", model=model_name, device=device,
-                        model_kwargs={"torch_dtype": torch.bfloat16, 'pin_memory':True},device_map="auto")
+    pipeline = pipeline("text-generation", model=model_name,
+                        model_kwargs={"torch_dtype": torch.bfloat16},device_map="auto")
     # define our own LLM
     llm = OurLLM()
 
