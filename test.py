@@ -47,10 +47,10 @@ service_context = ServiceContext.from_defaults(
     llm=llm, context_window=context_window, num_output=num_output
 )
 
-# Load the data
-doucuments = SimpleDirectoryReader("data_valid.json").load_data()
+doucuments = SimpleDirectoryReader("paul_graham_essay").load_data()
 index = ListIndex.from_documents(doucuments, service_context=service_context)
 
 # Query and print response
 query_engine = index.as_query_engine()
-response = query_engine.query("<query_str>")
+response = query_engine.query("Why did the author's advisor say nothing about the strange class?")
+print(response)
