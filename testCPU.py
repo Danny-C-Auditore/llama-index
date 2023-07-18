@@ -39,18 +39,25 @@ class OurLLM(CustomLLM):
     def stream_complete(self, prompt: str, **kwargs: Any) -> CompletionResponseGen:
         raise NotImplementedError()
 
+if __name__ == '__main__':
 
-# define our own LLM
-llm = OurLLM()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--directory', default=None)
+    args = parser.parse_args()
+    dir = args.directory
 
-service_context = ServiceContext.from_defaults(
-    llm=llm, context_window=context_window, num_output=num_output
-)
+    # define our own LLM
+    llm = OurLLM()
 
-doucuments = SimpleDirectoryReader(input_dir="~/paul_graham_essay.txt").load_data()
-index = ListIndex.from_documents(doucuments, service_context=service_context)
+    service_context = ServiceContext.from_defaults(
+        llm=llm, context_window=context_window, num_output=num_output
+    )
 
-# Query and print response
-query_engine = index.as_query_engine()
-response = query_engine.query("Why did the author's advisor say nothing about the strange class?")
-print(response)
+    # Load the data
+    doucuments = SimpleDirectoryReader(input_dir=dir).load_data()
+    index = ListIndex.from_documents(doucuments, service_context=service_context)
+
+    # Query and print response
+    query_engine = index.as_query_engine()
+    response = query_engine.query("Why did the author's advisor say nothing about the strange class?")
+    print(response)
