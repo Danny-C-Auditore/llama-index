@@ -1,6 +1,6 @@
 import logging
 import sys
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext, ListIndex
 from llama_index.prompts.prompts import SimpleInputPrompt
 import torch
 from  llama_index.llms import HuggingFaceLLM
@@ -47,7 +47,7 @@ llm = HuggingFaceLLM(
 )
 service_context = ServiceContext.from_defaults(chunk_size=1024, llm=llm)
 
-index = VectorStoreIndex.from_documents(documents, service_context=service_context)
+index = ListIndex.from_documents(documents, service_context=service_context)
 
 # set Logging to debug for more detailed outputs
 query_engie = index.as_query_engine()
