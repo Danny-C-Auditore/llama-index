@@ -49,7 +49,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--directory', default=None)
     parser.add_argument('--prompt', default=None)
-    parser.add_argument('--m', default="openlm-research/open_llama_3b")
+    parser.add_argument('--model', default="openlm-research/open_llama_3b")
     parser.add_argument('--device',default="cuda:0")
     args = parser.parse_args()
     dir = args.directory
