@@ -47,7 +47,7 @@ service_context = ServiceContext.from_defaults(
     llm=llm, context_window=context_window, num_output=num_output
 )
 
-doucuments = SimpleDirectoryReader("paul_graham_essay").load_data()
+doucuments = SimpleDirectoryReader("paul_graham_essay.txt").load_data()
 index = ListIndex.from_documents(doucuments, service_context=service_context)
 
 # Query and print response
