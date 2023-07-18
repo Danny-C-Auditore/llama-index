@@ -44,7 +44,7 @@ if __name__ == '__main__':
     # set number of output tokens
     num_output = 256
 
-    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--directory', default=None)
@@ -74,6 +74,7 @@ if __name__ == '__main__':
 
     # Query and print response
     query_engine = index.as_query_engine()
+    torch.cuda.empty_cache()
     response = query_engine.query(query)
     print(response)
 
