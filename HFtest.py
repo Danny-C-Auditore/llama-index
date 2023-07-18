@@ -18,10 +18,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dir', default='.\\data')
 parser.add_argument('--Q',default=None)
 parser.add_argument('--model', default="csitfun/llama-7b-logicot")
+parser.add_argument('--max', default=2048)
 args = parser.parse_args()
 dir = args.dir
 Q = args.Q
 model = args.model
+maxLen = args.max
 
 #load documents
 documents = SimpleDirectoryReader(dir).load_data()
@@ -30,7 +32,7 @@ documents = SimpleDirectoryReader(dir).load_data()
 query_wrapper_prompt = SimpleInputPrompt("<|USER|>{query_str}<|ASSISTANT|>")
 
 llm = HuggingFaceLLM(
-    context_window=4096,
+    context_window=maxLen,
     max_new_tokens=256,
     generate_kwargs={"temperature": 0.7, "do_sample": False},
     system_prompt=system_prompt,
