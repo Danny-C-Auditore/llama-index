@@ -32,7 +32,7 @@ documents = SimpleDirectoryReader(dir).load_data()
 query_wrapper_prompt = SimpleInputPrompt("<|USER|>{query_str}<|ASSISTANT|>")
 
 llm = HuggingFaceLLM(
-    context_window=maxLen,
+    context_window=int(maxLen),
     max_new_tokens=256,
     generate_kwargs={"temperature": 0.7, "do_sample": False},
     system_prompt=system_prompt,
