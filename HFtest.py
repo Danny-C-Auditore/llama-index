@@ -40,10 +40,10 @@ llm = HuggingFaceLLM(
     tokenizer_name=model,
     model_name=model,
     device_map="auto",
-    #stopping_ids=[50278, 50279, 50277, 1, 0],
-    tokenizer_kwargs={"max_length": int(maxLen)},
+    stopping_ids=[1,2],
+    tokenizer_kwargs={"max_length": 2048},
     # uncomment this if using CUDA to reduce memory usage
-    model_kwargs={"torch_dtype": torch.float16}
+    #model_kwargs={"torch_dtype": torch.float16}
 )
 service_context = ServiceContext.from_defaults(chunk_size=1024, llm=llm)
 
