@@ -73,7 +73,7 @@ if __name__ == '__main__':
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=4096)
     parser.add_argument('--file',default="lsat2020.TXT")
-    parser.add_argument('--mode', default=0)
+    parser.add_argument('--mode', default='0')
     args = parser.parse_args()
     dir = args.dir
     query = args.prompt
@@ -111,5 +111,5 @@ if __name__ == '__main__':
         #chat_history=custom_chat_history,
         verbose=True
     )
-    # response = chat_engine.chat(query)
-    # print(response)
+    response = chat_engine.chat(query)
+    print(response)
