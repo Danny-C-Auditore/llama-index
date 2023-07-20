@@ -70,7 +70,8 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dir', default="~/llama-index/data")
-    parser.add_argument('--prompt', default='What did author do growing up?')
+    parser.add_argument('--prompt',
+                        default='Based on the passage, which one of the following can be most reasonably inferred about the Freedom Rides? A.They were primarily a spontaneous phenomenon. B.They were directed against the u.s. government. C.They were less important to the u.S. civil rights movementthan were the original sit-in demonstrations. D.They were based on a different philosophy than the original sit-in demonstrations. E. They were modeled on the original sit-in demonstrations.')
     parser.add_argument('--model', default="daryl149/llama-2-7b-chat-hf")
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=4096)
@@ -115,7 +116,7 @@ if __name__ == '__main__':
 
 
     # chat_engine = CondenseQuestionChatEngine.from_defaults(
-    # 
+    #
     #     query_engine=query_engine,
     #     condense_question_prompt=custom_prompt,
     #     chat_history=custom_chat_history,
