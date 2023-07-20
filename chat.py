@@ -107,7 +107,7 @@ if __name__ == '__main__':
         ChatMode="BEST",
         query_engine=query_engine,
         condense_question_prompt=custom_prompt,
-        chat_history=custom_chat_history,
+        #chat_history=custom_chat_history,
         verbose=True
     )
     response = chat_engine.chat(query)
