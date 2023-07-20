@@ -71,6 +71,7 @@ if __name__ == '__main__':
 
     # Load the data
     doucuments = SimpleDirectoryReader(input_dir=dir).load_data()
+    print(documents)
     index = ListIndex.from_documents(doucuments, service_context=service_context)
 
     # Query and print response
