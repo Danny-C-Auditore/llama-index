@@ -120,8 +120,7 @@ if __name__ == '__main__':
     # chat = ChatMode('best')\
     chat = index.as_chat_engine(chat_mode=ChatMode.CONDENSE_QUESTION, streaming=True)
     res1 = chat.chat(query)
-    res1.print_res1()
-    # print(res1)
+    print(res1)
 
 
     # chat_engine = CondenseQuestionChatEngine.from_defaults(
