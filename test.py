@@ -1,9 +1,7 @@
 import os
-
 import torch
 from transformers import pipeline
 from typing import Optional, List, Mapping, Any
-
 from llama_index import (
     ServiceContext,
     SimpleDirectoryReader,
@@ -12,12 +10,8 @@ from llama_index import (
     VectorStoreIndex
 )
 from llama_index.llms import CustomLLM, CompletionResponse, LLMMetadata, CompletionResponseGen
-
 import argparse
 from tokenizers import Tokenizer
-
-Tokenizer.add_special_tokens({'pad_token': '[PAD]'})
-
 
 class OurLLM(CustomLLM):
 
@@ -67,7 +61,9 @@ if __name__ == '__main__':
     model_name = args.model
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
-    
+    tokennizer = Tokenizer.from_pretrained(model_name)
+    # tokennizer.pad_token = tokennizer.eos_token
+    tokennizer.add_special_tokens(AddedToken({'pad_token': '[PAD]'}))
     pipeline = pipeline("text-generation", model=model_name,
                         model_kwargs={"torch_dtype": torch.bfloat16},device_map="auto")
     # define our own LLM
