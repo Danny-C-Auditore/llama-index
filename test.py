@@ -52,7 +52,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', default="csitfun/llama-7b-logicot")
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=None)
-    parser.add_argument('--file',default="last2020.TXT")
+    parser.add_argument('--file',default=None, help="path to the file of document" )
     args = parser.parse_args()
     dir = args.dir
     query = args.prompt
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     documents = SimpleDirectoryReader(input_dir=dir).load_data()
     #documents = SimpleDirectoryReader(input_files=[file]).load_data()
     print(documents)
-    index = ListIndex.from_documents(doucuments, service_context=service_context)
+    index = ListIndex.from_documents(documents, service_context=service_context)
 
     # Query and print response
     query_engine = index.as_query_engine()
