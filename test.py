@@ -53,12 +53,14 @@ if __name__ == '__main__':
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=None)
     parser.add_argument('--file',default=None, help="path to the file of document" )
+    parser.add_argument("--output",default=256)
     args = parser.parse_args()
     dir = args.dir
     query = args.prompt
     device = args.device
     window = args.window
     file = args.file
+    output = args.output
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
     model_name = args.model
@@ -68,14 +70,15 @@ if __name__ == '__main__':
     llm = OurLLM()
 
     service_context = ServiceContext.from_defaults(
-        llm=llm, context_window=int(window), num_output=num_output
+        llm=llm, context_window=int(window), num_output=int(output)
     )
 
     # Load the data
     documents = SimpleDirectoryReader(input_dir=dir).load_data()
     #documents = SimpleDirectoryReader(input_files=[file]).load_data()
     #print(documents)
-    index = ListIndex.from_documents(documents, service_context=service_context)
+    #index = ListIndex.from_documents(documents, service_context=service_context)
+    index = VectorStoreIndex.from_documents(documents, service_context=service_context)
 
     # Query and print response
     query_engine = index.as_query_engine()
