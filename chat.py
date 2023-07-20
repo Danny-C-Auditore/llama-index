@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # set context window size
     context_window = 4096
     # set number of output tokens
-    num_output = 256
+    num_output = 1024
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
 
     parser = argparse.ArgumentParser()
