@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
     tokennizer = Tokenizer.from_pretrained(model_name)
-    print(tokennizer)
+    print(tokennizer.pad_token)
     tokennizer.pad_token = tokennizer.eos_token
     #tokennizer.add_special_tokens(AddedToken({'pad_token': '[PAD]'}))
     pipeline = pipeline("text-generation", model=model_name,
