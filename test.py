@@ -62,16 +62,17 @@ if __name__ == '__main__':
     window = args.window
     file = args.file
     output = args.output
+    model_name = args.model
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
-    model_name = args.model
+    
     pipeline = pipeline("text-generation", model=model_name,
                         model_kwargs={"torch_dtype": torch.bfloat16},device_map="auto")
     # define our own LLM
     llm = OurLLM()
 
     service_context = ServiceContext.from_defaults(
-        llm=llm, context_window=int(window), num_output=int(output),embed_model=("local:"+ model)
+        llm=llm, context_window=int(window), num_output=int(output),embed_model=("local:"+ model_name)
     )
 
     # Load the data
