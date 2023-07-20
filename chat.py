@@ -48,11 +48,14 @@ from the conversation.
 """)
 
 # list of (human_message, ai_message) tuples
+# custom_chat_history = [
+#     (
+#         'Hello, I am asking you questions with options about the data. And you need to give me the right answer from the optinon numbered from A to E ',
+#         'Okay, sounds good.'
+#     )
+# ]
 custom_chat_history = [
-    (
-        'Hello, I am asking you questions with options about the data. And you need to give me the right answer from the optinon numbered from A to E ',
-        'Okay, sounds good.'
-    )
+    
 ]
 
 if __name__ == '__main__':
