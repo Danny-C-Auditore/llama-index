@@ -14,7 +14,9 @@ from llama_index import (
 from llama_index.llms import CustomLLM, CompletionResponse, LLMMetadata, CompletionResponseGen
 
 import argparse
+from tokenizers import Tokenizer
 
+Tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
 
 class OurLLM(CustomLLM):
