@@ -8,7 +8,8 @@ from llama_index import (
     ServiceContext,
     SimpleDirectoryReader,
     LangchainEmbedding,
-    ListIndex
+    ListIndex,
+    VectorStoreIndex
 )
 from llama_index.llms import CustomLLM, CompletionResponse, LLMMetadata, CompletionResponseGen
 
