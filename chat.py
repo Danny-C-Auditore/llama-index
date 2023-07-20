@@ -71,7 +71,7 @@ if __name__ == '__main__':
     # set context window size
     context_window = 4096
     # set number of output tokens
-    num_output = 1024
+    #num_output = 1024
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
 
     parser = argparse.ArgumentParser()
@@ -83,6 +83,7 @@ if __name__ == '__main__':
     parser.add_argument('--window',default=4096)
     parser.add_argument('--file',default="lsat2020.TXT")
     parser.add_argument('--mode', default='0')
+    parser.add_argument('--output',default=256)
     args = parser.parse_args()
     dir = args.dir
     query = args.prompt
@@ -90,6 +91,7 @@ if __name__ == '__main__':
     window = args.window
     file = args.file
     mode = args.mode
+    num_output = args.output
 
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
