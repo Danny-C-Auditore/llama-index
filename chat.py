@@ -13,6 +13,10 @@ from llama_index import (
 from llama_index.llms import CustomLLM, CompletionResponse, LLMMetadata, CompletionResponseGen
 from llama_index.prompts import Prompt
 import argparse
+# from tokenizers import Tokenizer
+#
+# tokennizer = Tokenizer.from_pretrained()
+# Tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
 class OurLLM(CustomLLM):
 
@@ -103,12 +107,20 @@ if __name__ == '__main__':
 
     # Query and print response
     query_engine = index.as_query_engine()
-    chat_engine = CondenseQuestionChatEngine.from_defaults(
-        ChatMode="best",
-        query_engine=query_engine,
-        condense_question_prompt=custom_prompt,
-        #chat_history=custom_chat_history,
-        verbose=True
-    )
-    response = chat_engine.chat(query)
-    print(response)
+
+    # chat = ChatMode('best')\
+    chat = index.as_chat_engine(chat_mode=ChatMode.BEST)
+    res1 = chat.chat(query)
+    print(res1)
+
+
+    # chat_engine = CondenseQuestionChatEngine.from_defaults(
+    # 
+    #     query_engine=query_engine,
+    #     condense_question_prompt=custom_prompt,
+    #     chat_history=custom_chat_history,
+    #     verbose=True
+    # )
+
+    # response = chat_engine.chat(query)
+    # print(response)
