@@ -49,8 +49,8 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dir', default=None)
-    parser.add_argument('--prompt', default='What did author do growing up?')
-    parser.add_argument('--model', default="csitfun/llama-7b-logicot")
+    parser.add_argument('--prompt', default='Based on the passage, which one of the following can be most reasonably inferred about the Freedom Rides? A.They were primarily a spontaneous phenomenon. B.They were directed against the u.s. government. C.They were less important to the u.S. civil rights movementthan were the original sit-in demonstrations. D.They were based on a different philosophy than the original sit-in demonstrations. E. They were modeled on the original sit-in demonstrations.')
+    parser.add_argument('--model', default="daryl149/llama-2-7b-chat-hf")
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=None)
     parser.add_argument('--file',default=None, help="path to the file of document" )
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     llm = OurLLM()
 
     service_context = ServiceContext.from_defaults(
-        llm=llm, context_window=int(window), num_output=int(output)
+        llm=llm, context_window=int(window), num_output=int(output),embed_model=("local:"+ model)
     )
 
     # Load the data
