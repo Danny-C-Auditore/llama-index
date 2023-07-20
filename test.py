@@ -42,7 +42,7 @@ if __name__ == '__main__':
     # set context window size
     context_window = 2048
     # set number of output tokens
-    num_output = 1024
+    num_output = 128
 
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:32"
 
