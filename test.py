@@ -61,11 +61,11 @@ if __name__ == '__main__':
     model_name = args.model
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
-    tokennizer = Tokenizer.from_pretrained(model_name)
-    # tokennizer.pad_token = tokennizer.eos_token
-    tokennizer.add_special_tokens('[PAD]')
     pipeline = pipeline("text-generation", model=model_name,
                         model_kwargs={"torch_dtype": torch.bfloat16},device_map="auto")
+    tokennizer = Tokenizer.from_pretrained(model_name)
+    # tokennizer.pad_token = tokennizer.eos_token
+    tokennizer.add_special_tokens(['[PAD]'])
     # define our own LLM
     llm = OurLLM()
 
