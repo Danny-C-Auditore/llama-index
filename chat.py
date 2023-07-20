@@ -13,6 +13,12 @@ from llama_index import (
 from llama_index.llms import CustomLLM, CompletionResponse, LLMMetadata, CompletionResponseGen
 from llama_index.prompts import Prompt
 import argparse
+import logging
+import sys
+
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+
 # from tokenizers import Tokenizer
 #
 # tokennizer = Tokenizer.from_pretrained()
@@ -110,9 +116,10 @@ if __name__ == '__main__':
     query_engine = index.as_query_engine()
 
     # chat = ChatMode('best')\
-    chat = index.as_chat_engine(chat_mode=ChatMode.BEST)
+    chat = index.as_chat_engine(chat_mode=ChatMode.CONDENSE_QUESTION, streaming=True)
     res1 = chat.chat(query)
-    print(res1)
+    res1.print_res1()
+    # print(res1)
 
 
     # chat_engine = CondenseQuestionChatEngine.from_defaults(
