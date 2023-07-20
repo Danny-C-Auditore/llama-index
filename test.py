@@ -52,11 +52,13 @@ if __name__ == '__main__':
     parser.add_argument('--model', default="csitfun/llama-7b-logicot")
     parser.add_argument('--device',default="cuda:0")
     parser.add_argument('--window',default=None)
+    parser.add_argument('--file',default="last2020.TXT")
     args = parser.parse_args()
     dir = args.dir
     query = args.prompt
     device = args.device
     window = args.window
+    file = args.file
 
     # store the pipeline or model outside of the LLM class to aovid memory issue
     model_name = args.model
@@ -70,7 +72,8 @@ if __name__ == '__main__':
     )
 
     # Load the data
-    doucuments = SimpleDirectoryReader(input_dir=dir).load_data()
+    documents = SimpleDirectoryReader(input_dir=dir).load_data()
+    #documents = SimpleDirectoryReader(input_files=[file]).load_data()
     print(documents)
     index = ListIndex.from_documents(doucuments, service_context=service_context)
 
