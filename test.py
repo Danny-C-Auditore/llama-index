@@ -63,11 +63,7 @@ if __name__ == '__main__':
     # store the pipeline or model outside of the LLM class to aovid memory issue
     pipeline = pipeline("text-generation", model=model_name,
                         model_kwargs={"torch_dtype": torch.bfloat16},device_map="auto")
-    pipeline.tokenizer.pad_token = pipeline.tokenizer.eos_token
-    # tokennizer = Tokenizer.from_pretrained(model_name)
-    # # tokennizer.pad_token = tokennizer.eos_token
-    # tokennizer.add_special_tokens(['[PAD]'])
-    # define our own LLM
+
     llm = OurLLM()
 
     service_context = ServiceContext.from_defaults(
